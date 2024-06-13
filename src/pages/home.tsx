@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react"
+import { useStorageState } from "../shared/hooks/useStorageState"
 import { generateUrl } from "../shared/utils/generateUrl"
 
 type EventData<T1, T2> = {
@@ -18,8 +19,11 @@ type MainButton = {
 export const Home = () => {
     const iframeRef = useRef<HTMLIFrameElement>(null)
 
-    const [botToken, setBotToken] = useState("")
-    const [origin, setOrigin] = useState("http://localhost:5173")
+    const [botToken, setBotToken] = useStorageState("botToken", "")
+    const [origin, setOrigin] = useStorageState(
+        "origin",
+        "http://localhost:5173"
+    )
 
     const [mainButton, setMainButton] = useState<MainButton | null>()
     const [isBackButtonVisible, setIsBackButtonVisible] = useState(false)
@@ -113,7 +117,11 @@ export const Home = () => {
     return (
         <div className="flex gap-4 h-screen items-stretch p-4">
             <div className="rounded-2xl border border-solid border-white/10 p-4">
-                <input type="text" />
+                <input
+                    type="password"
+                    value={botToken}
+                    onChange={(e) => setBotToken(e.target.value)}
+                />
             </div>
             <div
                 className="flex-1 flex justify-center items-center rounded-2xl border border-solid border-white/10"

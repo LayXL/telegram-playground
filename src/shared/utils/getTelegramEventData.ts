@@ -24,4 +24,7 @@ export const getTelegramEventData = (event: { data: string }) => {
         | EventData<"web_app_set_header_color", { color: string }>
         | EventData<"web_app_set_background_color", { color: string }>
         | EventData<"web_app_trigger_haptic_feedback", TriggerHapticFeedback>
+        | EventData<"web_app_request_viewport", null>
+        | EventData<"web_app_request_theme", null>
+        | EventData<"iframe_ready", { reload_supported: boolean }>
 }

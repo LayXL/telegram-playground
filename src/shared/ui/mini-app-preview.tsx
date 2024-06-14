@@ -80,6 +80,11 @@ export const MiniAppPreview = (props: MiniAppPreviewProps) => {
                 case "web_app_setup_back_button":
                     setIsBackButtonVisible(eventData.is_visible)
                     break
+                case "web_app_trigger_haptic_feedback":
+                case "web_app_request_viewport":
+                case "web_app_request_theme":
+                case "iframe_ready":
+                    break
                 default:
                     console.log(eventType, eventData)
                     break

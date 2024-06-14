@@ -17,7 +17,7 @@ export type MainButton = {
     text_color: string
 }
 
-export const getTelegramEventData = (event: unknown) => {
+export const getTelegramEventData = (event: { data: string }) => {
     return JSON.parse(event.data) as
         | EventData<"web_app_setup_main_button", MainButton>
         | EventData<"web_app_setup_back_button", { is_visible: boolean }>

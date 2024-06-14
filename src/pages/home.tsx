@@ -1,6 +1,7 @@
 import { useStorageState } from "@/shared/hooks/useStorageState"
-import { Input } from "@/shared/shadcn/ui/input"
-import { generateUrl } from "@/shared/utils/generateUrl"
+import { FormField } from "@/shared/ui/form/form-field"
+import { Input } from "@/shared/ui/input"
+import { TgWebAppDataUser, generateUrl } from "@/shared/utils/generateUrl"
 import {
     getTelegramEventData,
     type MainButton,
@@ -15,49 +16,52 @@ export const Home = () => {
         "origin",
         "http://localhost:5173"
     )
+    const [userData, setUserData] = useStorageState<Partial<TgWebAppDataUser>>(
+        "userId",
+        {}
+    )
 
     const [mainButton, setMainButton] = useState<MainButton | null>()
     const [isBackButtonVisible, setIsBackButtonVisible] = useState(false)
     const [headerColor, setHeaderColor] = useState<string | null>()
     const [backgroundColor, setBackgroundColor] = useState<string | null>()
 
-    const url = generateUrl({
-        botToken,
-        origin,
-        tgWebAppParams: {
-            tgWebAppData: {
-                query_id: "QUERY",
-                user: {
-                    id: 5000856692,
-                    first_name: "Виталий",
-                    last_name: "DEV TEST",
-                    username: "vvlay",
-                    language_code: "en",
-                    allows_write_to_pm: true,
-                    is_premium: true,
-                },
-                auth_date: new Date(1000).getTime(),
-            },
-            tgWebAppVersion: "7.2",
-            tgWebAppPlatform: "macos",
-            tgWebAppBotInline: 1,
-            tgWebAppThemeParams: {
-                button_text_color: "#ffffff",
-                accent_text_color: "#007aff",
-                header_bg_color: "#1c1c1c",
-                section_bg_color: "#282828",
-                text_color: "#ffffff",
-                button_color: "#007aff",
-                hint_color: "#ffffff",
-                section_header_text_color: "#e5e5e5",
-                link_color: "#007aff",
-                bg_color: "#282828",
-                secondary_bg_color: "#1c1c1c",
-                subtitle_text_color: "#ffffff",
-                destructive_text_color: "#ff453a",
-            },
-        },
-    })
+    const url =
+        origin.length > 0
+            ? generateUrl({
+                  botToken,
+                  origin,
+                  tgWebAppParams: {
+                      tgWebAppData: {
+                          query_id: "QUERY",
+                          user: {
+                              id: userData.id ?? 0,
+                              first_name: userData.first_name ?? "",
+                              language_code: "en",
+                          },
+                          auth_date: new Date(1000).getTime(),
+                      },
+                      tgWebAppVersion: "7.2",
+                      tgWebAppPlatform: "macos",
+                      tgWebAppBotInline: 1,
+                      tgWebAppThemeParams: {
+                          button_text_color: "#ffffff",
+                          accent_text_color: "#007aff",
+                          header_bg_color: "#1c1c1c",
+                          section_bg_color: "#282828",
+                          text_color: "#ffffff",
+                          button_color: "#007aff",
+                          hint_color: "#ffffff",
+                          section_header_text_color: "#e5e5e5",
+                          link_color: "#007aff",
+                          bg_color: "#282828",
+                          secondary_bg_color: "#1c1c1c",
+                          subtitle_text_color: "#ffffff",
+                          destructive_text_color: "#ff453a",
+                      },
+                  },
+              })
+            : undefined
 
     useEffect(() => {
         const listener = (event: { data: string; origin: string }) => {
@@ -100,12 +104,21 @@ export const Home = () => {
 
     return (
         <div className="flex gap-4 h-screen items-stretch p-4">
-            <div className="rounded-2xl border border-solid border-white/10 overflow-hidden p-4">
-                <Input
-                    type="password"
-                    value={botToken}
-                    onChange={(e) => setBotToken(e.target.value)}
-                />
+            <div className="rounded-2xl border border-solid border-white/10 overflow-hidden p-4 flex flex-col gap-2">
+                <FormField label="Bot token">
+                    <Input
+                        type="password"
+                        value={botToken}
+                        onChange={(e) => setBotToken(e.target.value)}
+                    />
+                </FormField>
+                <FormField label="Origin">
+                    <Input
+                        type="text"
+                        value={origin}
+                        onChange={(e) => setOrigin(e.target.value)}
+                    />
+                </FormField>
             </div>
             <div
                 className="flex-1 flex justify-center items-center rounded-2xl border border-solid border-white/10"

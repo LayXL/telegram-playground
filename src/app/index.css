@@ -2,11 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-    --tg-theme-bg-color: #1a1a1a;
-    background-color: var(--tg-theme-bg-color);
-}
-
 body,
 #root {
     min-height: 100vh;

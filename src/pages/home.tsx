@@ -1,4 +1,4 @@
-import { useStorageState } from "@/shared/hooks/useStorageState"
+import { useStorage } from "@/shared/hooks/useStorage"
 import { FormField } from "@/shared/ui/form/form-field"
 import { Input } from "@/shared/ui/input"
 import { TgWebAppDataUser, generateUrl } from "@/shared/utils/generateUrl"
@@ -11,12 +11,9 @@ import { useEffect, useRef, useState } from "react"
 export const Home = () => {
     const iframeRef = useRef<HTMLIFrameElement>(null)
 
-    const [botToken, setBotToken] = useStorageState("botToken", "")
-    const [origin, setOrigin] = useStorageState(
-        "origin",
-        "http://localhost:5173"
-    )
-    const [userData, setUserData] = useStorageState<Partial<TgWebAppDataUser>>(
+    const [botToken, setBotToken] = useStorage("botToken", "")
+    const [origin, setOrigin] = useStorage("origin", "http://localhost:5173")
+    const [userData, setUserData] = useStorage<Partial<TgWebAppDataUser>>(
         "userId",
         {}
     )

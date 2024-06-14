@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import { useSearchParams } from "react-router-dom"
 import superjson from "superjson"
 
-export const useStorageState = <T>(
+export const useStorage = <T>(
     key: string,
     initialValue?: T
 ): [T, (value: T) => void] => {

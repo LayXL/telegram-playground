@@ -6,7 +6,7 @@ import {
     getTelegramEventData,
     type MainButton,
 } from "@/shared/utils/getTelegramEventData"
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useMemo, useRef, useState } from "react"
 
 export const Home = () => {
     const iframeRef = useRef<HTMLIFrameElement>(null)
@@ -23,42 +23,43 @@ export const Home = () => {
     const [headerColor, setHeaderColor] = useState<string | null>()
     const [backgroundColor, setBackgroundColor] = useState<string | null>()
 
-    const url =
-        origin.length > 0
-            ? generateUrl({
-                  botToken,
-                  origin,
-                  tgWebAppParams: {
-                      tgWebAppData: {
-                          query_id: "QUERY",
-                          user: {
-                              id: userData.id ?? 0,
-                              first_name: userData.first_name ?? "",
-                              language_code: "en",
-                          },
-                          auth_date: new Date(1000).getTime(),
-                      },
-                      tgWebAppVersion: "7.2",
-                      tgWebAppPlatform: "macos",
-                      tgWebAppBotInline: 1,
-                      tgWebAppThemeParams: {
-                          button_text_color: "#ffffff",
-                          accent_text_color: "#007aff",
-                          header_bg_color: "#1c1c1c",
-                          section_bg_color: "#282828",
-                          text_color: "#ffffff",
-                          button_color: "#007aff",
-                          hint_color: "#ffffff",
-                          section_header_text_color: "#e5e5e5",
-                          link_color: "#007aff",
-                          bg_color: "#282828",
-                          secondary_bg_color: "#1c1c1c",
-                          subtitle_text_color: "#ffffff",
-                          destructive_text_color: "#ff453a",
-                      },
-                  },
-              })
-            : undefined
+    const url = useMemo(() => {
+        if (origin.length > 0) return undefined
+
+        return generateUrl({
+            botToken,
+            origin,
+            tgWebAppParams: {
+                tgWebAppData: {
+                    query_id: "QUERY",
+                    user: {
+                        id: userData.id ?? 0,
+                        first_name: userData.first_name ?? "",
+                        language_code: "en",
+                    },
+                    auth_date: new Date(1000).getTime(),
+                },
+                tgWebAppVersion: "7.2",
+                tgWebAppPlatform: "macos",
+                tgWebAppBotInline: 1,
+                tgWebAppThemeParams: {
+                    button_text_color: "#ffffff",
+                    accent_text_color: "#007aff",
+                    header_bg_color: "#1c1c1c",
+                    section_bg_color: "#282828",
+                    text_color: "#ffffff",
+                    button_color: "#007aff",
+                    hint_color: "#ffffff",
+                    section_header_text_color: "#e5e5e5",
+                    link_color: "#007aff",
+                    bg_color: "#282828",
+                    secondary_bg_color: "#1c1c1c",
+                    subtitle_text_color: "#ffffff",
+                    destructive_text_color: "#ff453a",
+                },
+            },
+        })
+    }, [botToken, origin, userData])
 
     useEffect(() => {
         const listener = (event: { data: string; origin: string }) => {

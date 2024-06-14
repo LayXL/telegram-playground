@@ -1,10 +1,10 @@
-import { useEffect, useRef, useState } from "react"
-import { useStorageState } from "../shared/hooks/useStorageState"
-import { generateUrl } from "../shared/utils/generateUrl"
+import { useStorageState } from "@/shared/hooks/useStorageState"
+import { generateUrl } from "@/shared/utils/generateUrl"
 import {
     getTelegramEventData,
     type MainButton,
-} from "../shared/utils/getTelegramEventData"
+} from "@/shared/utils/getTelegramEventData"
+import { useEffect, useRef, useState } from "react"
 
 export const Home = () => {
     const iframeRef = useRef<HTMLIFrameElement>(null)

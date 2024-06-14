@@ -9,6 +9,9 @@
         "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
         "preview": "vite preview"
     },
+    "bin": {
+        "start": "start.js"
+    },
     "dependencies": {
         "@radix-ui/react-label": "^2.0.2",
         "@uidotdev/usehooks": "^2.4.1",

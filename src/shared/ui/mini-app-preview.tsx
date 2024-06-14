@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react"
 import { TgWebAppDataUser, generateUrl } from "../utils/generateUrl"
 import { MainButton, getTelegramEventData } from "../utils/getTelegramEventData"
-import { ArrowBackIcon } from "../utils/icons"
 
 type MiniAppPreviewProps = {
     origin?: string
@@ -121,10 +120,8 @@ export const MiniAppPreview = (props: MiniAppPreviewProps) => {
             >
                 {isBackButtonVisible && (
                     <button
-                        className={
-                            "absolute left-2 h-12 w-12 grid place-items-center"
-                        }
-                        children={<ArrowBackIcon />}
+                        className={"absolute left-2 h-12 w-12"}
+                        children={"&#x2190;"}
                         onClick={() => {
                             sendToIframe("back_button_pressed")
                         }}

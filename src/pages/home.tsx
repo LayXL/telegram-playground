@@ -1,20 +1,10 @@
 import { useEffect, useRef, useState } from "react"
 import { useStorageState } from "../shared/hooks/useStorageState"
 import { generateUrl } from "../shared/utils/generateUrl"
-
-type EventData<T1, T2> = {
-    eventType: T1
-    eventData: T2
-}
-
-type MainButton = {
-    is_visible: boolean
-    is_active: boolean
-    is_progress_visible: boolean
-    text: string
-    color: string
-    text_color: string
-}
+import {
+    getTelegramEventData,
+    type MainButton,
+} from "../shared/utils/getTelegramEventData"
 
 export const Home = () => {
     const iframeRef = useRef<HTMLIFrameElement>(null)
@@ -72,14 +62,7 @@ export const Home = () => {
         const listener = (event: { data: string; origin: string }) => {
             if (event.origin !== origin) return
 
-            const { eventType, eventData } = JSON.parse(event.data) as
-                | EventData<"web_app_setup_main_button", MainButton>
-                | EventData<
-                      "web_app_setup_back_button",
-                      { is_visible: boolean }
-                  >
-                | EventData<"web_app_set_header_color", { color: string }>
-                | EventData<"web_app_set_background_color", { color: string }>
+            const { eventType, eventData } = getTelegramEventData(event)
 
             switch (eventType) {
                 case "web_app_setup_main_button":
@@ -116,8 +99,9 @@ export const Home = () => {
 
     return (
         <div className="flex gap-4 h-screen items-stretch p-4">
-            <div className="rounded-2xl border border-solid border-white/10 p-4">
+            <div className="rounded-2xl border border-solid border-white/10 overflow-hidden p-4">
                 <input
+                    className="bg-transparent"
                     type="password"
                     value={botToken}
                     onChange={(e) => setBotToken(e.target.value)}

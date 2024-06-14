@@ -33,6 +33,18 @@ export const Home = () => {
                         onChange={(e) => setOrigin(e.target.value)}
                     />
                 </FormField>
+                <FormField label={"User ID"}>
+                    <Input
+                        type={"text"}
+                        value={userData.id}
+                        onChange={(e) =>
+                            setUserData({
+                                ...userData,
+                                id: parseInt(e.target.value),
+                            })
+                        }
+                    />
+                </FormField>
             </div>
             <div
                 className={

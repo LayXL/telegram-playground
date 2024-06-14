@@ -36,6 +36,7 @@ export const Home = () => {
                         id: userData.id ?? 0,
                         first_name: userData.first_name ?? "",
                         language_code: "en",
+                        ...userData,
                     },
                     auth_date: new Date(1000).getTime(),
                 },

@@ -10,7 +10,7 @@
         "preview": "vite preview"
     },
     "bin": {
-        "start": "start.js"
+        "telegram-playground": "start.js"
     },
     "dependencies": {
         "@radix-ui/react-label": "^2.0.2",

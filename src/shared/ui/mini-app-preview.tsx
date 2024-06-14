@@ -91,7 +91,7 @@ export const MiniAppPreview = (props: MiniAppPreviewProps) => {
     const sendToIframe = (eventType: string, eventData?: unknown) => {
         iframeRef.current?.contentWindow?.postMessage(
             JSON.stringify({ eventType, eventData: eventData ?? null }),
-            origin
+            "*"
         )
     }
 

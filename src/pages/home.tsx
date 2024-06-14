@@ -1,5 +1,5 @@
 import { useStorage } from "@/shared/hooks/useStorage"
-import { FormField } from "@/shared/ui/form/form-field"
+import { FormField } from "@/shared/ui/form-field"
 import { Input } from "@/shared/ui/input"
 import { MiniAppPreview } from "@/shared/ui/mini-app-preview"
 import { TgWebAppDataUser } from "@/shared/utils/generateUrl"

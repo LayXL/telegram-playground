@@ -25,7 +25,7 @@ export interface TgWebAppDataUser {
     is_premium?: boolean
 }
 
-interface TgWebAppThemeParams {
+export interface TgWebAppThemeParams {
     button_text_color: string
     accent_text_color: string
     header_bg_color: string

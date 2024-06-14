@@ -1,7 +1,26 @@
 import { useEffect, useMemo, useRef, useState } from "react"
-import { TgWebAppDataUser, generateUrl } from "../utils/generateUrl"
+import {
+    generateUrl,
+    type TgWebAppDataUser,
+    type TgWebAppThemeParams,
+} from "../utils/generateUrl"
 import { MainButton, getTelegramEventData } from "../utils/getTelegramEventData"
 
+const defaultTheme: TgWebAppThemeParams = {
+    button_text_color: "#ffffff",
+    accent_text_color: "#007aff",
+    header_bg_color: "#1c1c1c",
+    section_bg_color: "#282828",
+    text_color: "#ffffff",
+    button_color: "#007aff",
+    hint_color: "#ffffff",
+    section_header_text_color: "#e5e5e5",
+    link_color: "#007aff",
+    bg_color: "#282828",
+    secondary_bg_color: "#1c1c1c",
+    subtitle_text_color: "#ffffff",
+    destructive_text_color: "#ff453a",
+}
 type MiniAppPreviewProps = {
     origin?: string
     botToken?: string
@@ -37,21 +56,7 @@ export const MiniAppPreview = (props: MiniAppPreviewProps) => {
                 tgWebAppVersion: "7.2",
                 tgWebAppPlatform: "macos",
                 tgWebAppBotInline: 1,
-                tgWebAppThemeParams: {
-                    button_text_color: "#ffffff",
-                    accent_text_color: "#007aff",
-                    header_bg_color: "#1c1c1c",
-                    section_bg_color: "#282828",
-                    text_color: "#ffffff",
-                    button_color: "#007aff",
-                    hint_color: "#ffffff",
-                    section_header_text_color: "#e5e5e5",
-                    link_color: "#007aff",
-                    bg_color: "#282828",
-                    secondary_bg_color: "#1c1c1c",
-                    subtitle_text_color: "#ffffff",
-                    destructive_text_color: "#ff453a",
-                },
+                tgWebAppThemeParams: defaultTheme,
             },
         })
     }, [props.botToken, props.origin, props.userData])

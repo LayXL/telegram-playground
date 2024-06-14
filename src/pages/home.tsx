@@ -35,7 +35,7 @@ export const Home = () => {
                     allows_write_to_pm: true,
                     is_premium: true,
                 },
-                auth_date: 1718317078,
+                auth_date: new Date(1000).getTime(),
             },
             tgWebAppVersion: "7.2",
             tgWebAppPlatform: "macos",

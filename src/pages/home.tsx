@@ -100,25 +100,31 @@ export const Home = () => {
     }
 
     return (
-        <div className="flex gap-4 h-screen items-stretch p-4">
-            <div className="rounded-2xl border border-solid border-white/10 overflow-hidden p-4 flex flex-col gap-2">
-                <FormField label="Bot token">
+        <div className={"flex gap-4 h-screen items-stretch p-4"}>
+            <div
+                className={
+                    "rounded-2xl border border-solid border-white/10 overflow-hidden p-4 flex flex-col gap-2"
+                }
+            >
+                <FormField label={"Bot token"}>
                     <Input
-                        type="password"
+                        type={"password"}
                         value={botToken}
                         onChange={(e) => setBotToken(e.target.value)}
                     />
                 </FormField>
-                <FormField label="Origin">
+                <FormField label={"Origin"}>
                     <Input
-                        type="text"
+                        type={"text"}
                         value={origin}
                         onChange={(e) => setOrigin(e.target.value)}
                     />
                 </FormField>
             </div>
             <div
-                className="flex-1 flex justify-center items-center rounded-2xl border border-solid border-white/10"
+                className={
+                    "flex-1 flex justify-center items-center rounded-2xl border border-solid border-white/10"
+                }
                 style={{
                     backgroundImage:
                         "linear-gradient(#ffffff18 1px, transparent 1px), linear-gradient(to right, #ffffff18 1px, #ffffff00 1px)",
@@ -127,7 +133,9 @@ export const Home = () => {
                 }}
             >
                 <div
-                    className="flex flex-col rounded-2xl border border-solid border-white/10 overflow-hidden"
+                    className={
+                        "flex flex-col rounded-2xl border border-solid border-white/10 overflow-hidden"
+                    }
                     style={{
                         width: 380,
                         height: 740,
@@ -137,7 +145,9 @@ export const Home = () => {
                     }}
                 >
                     <div
-                        className="min-h-12 grid place-items-center relative text-white"
+                        className={
+                            "min-h-12 grid place-items-center relative text-white"
+                        }
                         style={
                             headerColor
                                 ? {
@@ -148,14 +158,14 @@ export const Home = () => {
                     >
                         {isBackButtonVisible && (
                             <button
-                                className="absolute left-2 h-12 w-12"
-                                children="&#x2190;"
+                                className={"absolute left-2 h-12 w-12"}
+                                children={"&#x2190;"}
                                 onClick={() => {
                                     sendToIframe("back_button_pressed")
                                 }}
                             />
                         )}
-                        <h2 className="font-medium select-none">
+                        <h2 className={"font-medium select-none"}>
                             Your Mini App
                         </h2>
                     </div>
@@ -166,9 +176,9 @@ export const Home = () => {
                         src={url}
                     />
                     {mainButton?.is_active && (
-                        <div className="p-2">
+                        <div className={"p-2"}>
                             <button
-                                className="h-12 w-full rounded-xl"
+                                className={"h-12 w-full rounded-xl"}
                                 style={{
                                     backgroundColor: mainButton.color,
                                     color: mainButton.text_color,

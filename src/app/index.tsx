@@ -1,4 +1,3 @@
-import { AppRoot } from "@telegram-apps/telegram-ui"
 import { StrictMode } from "react"
 import ReactDOM from "react-dom/client"
 import { RouterProvider, createBrowserRouter } from "react-router-dom"
@@ -14,8 +13,6 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
     <StrictMode>
-        <AppRoot>
-            <RouterProvider router={router} />
-        </AppRoot>
+        <RouterProvider router={router} />
     </StrictMode>
 )

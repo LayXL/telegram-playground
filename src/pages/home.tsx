@@ -1,4 +1,5 @@
 import { useStorageState } from "@/shared/hooks/useStorageState"
+import { Input } from "@/shared/shadcn/ui/input"
 import { generateUrl } from "@/shared/utils/generateUrl"
 import {
     getTelegramEventData,
@@ -100,8 +101,7 @@ export const Home = () => {
     return (
         <div className="flex gap-4 h-screen items-stretch p-4">
             <div className="rounded-2xl border border-solid border-white/10 overflow-hidden p-4">
-                <input
-                    className="bg-transparent"
+                <Input
                     type="password"
                     value={botToken}
                     onChange={(e) => setBotToken(e.target.value)}
